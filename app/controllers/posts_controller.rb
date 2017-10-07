@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.all
+    @posts = Post.censoredList
   end
 
   def show
@@ -10,5 +10,6 @@ class PostsController < ApplicationController
   end
 
   def edit
+    
   end
 end
