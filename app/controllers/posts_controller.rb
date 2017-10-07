@@ -1,9 +1,10 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.censoredList
+    @posts = Post.all
   end
 
   def show
+    @post = Post.find(params[:id])
   end
 
   def new
