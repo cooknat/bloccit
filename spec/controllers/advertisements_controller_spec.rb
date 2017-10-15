@@ -24,31 +24,41 @@ RSpec.describe AdvertisementsController, type: :controller do
   end
     describe "Advertisement create" do
       it "increases the number of Advertisement by 1" do
-        expect{ advertisement :create, params: { advertisement: { title: RandomData.random_sentence, copy: RandomData.random_paragraph, price: RandomData.random_num } } }.to change(Advertisement,:count).by(1)
+        expect{ post :create, params: { advertisement: { title: RandomData.random_sentence, copy: RandomData.random_paragraph, price: RandomData.random_num } } }.to change(Advertisement,:count).by(1)
       end
 
       it "assigns the new ad to @Advertisement" do
-        advertisement :create, params: { advertisement: { title: RandomData.random_sentence, body: RandomData.random_paragraph, price: RandomData.random_num } }
+        post :create, params: { advertisement: { title: RandomData.random_sentence, body: RandomData.random_paragraph, price: RandomData.random_num } }
         expect(assigns(:advertisement)).to eq Advertisement.last
       end
  
       it "redirects to the new ad" do
-        advertisement :create, params: { advertisement: { title: RandomData.random_sentence, body: RandomData.random_paragraph, price: RandomData.random_num } }
+        post :create, params: { advertisement: { title: RandomData.random_sentence, body: RandomData.random_paragraph, price: RandomData.random_num } }
         expect(response).to redirect_to Advertisement.last
       end
     
     it "assigns [my_ad] to @advertisements" do
        get :index
-       expect(assigns(:advertisement)).to eq([my_ad])
+       expect(assigns(:advertisements)).to eq([my_ad])
     end
   end
   
- describe "GET #show" do
-   it "returns http success" do
-     get :show
-     expect(response).to have_http_status(:success)
-   end
- end
+  describe "GET show" do
+    it "returns http success" do
+      get :show, params: { id: my_ad.id }
+      expect(response).to have_http_status(:success)
+    end
+    
+    it "renders the #show view" do
+      get :show, params: { id: my_ad.id }
+      expect(response).to render_template :show
+    end
+ 
+    it "assigns my_ad to @advertisement" do
+      get :show, params: { id: my_ad.id }
+      expect(assigns(:advertisement)).to eq(my_ad)
+    end
+  end
 
  describe "GET #new" do
    it "returns http success" do
@@ -56,13 +66,5 @@ RSpec.describe AdvertisementsController, type: :controller do
        expect(response).to have_http_status(:success)
    end
  end
-
- describe "GET #create" do
-   it "returns http success" do
-     get :create
-       expect(response).to have_http_status(:success)
-   end
-end
-  
 
 end
