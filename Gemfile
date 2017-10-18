@@ -44,6 +44,8 @@ source 'https://rubygems.org'
  
  gem 'bootstrap-sass'
  
+ gem 'shoulda'
+ 
  group :development do
    gem 'listen', '~> 3.0.5'
  end
