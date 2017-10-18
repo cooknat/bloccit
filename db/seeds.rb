@@ -1,7 +1,7 @@
  require 'random_data'
  
   # Create Topics
- 15.times do
+ 1.times do
    Topic.create!(
      name:         RandomData.random_sentence,
      description:  RandomData.random_paragraph
@@ -10,7 +10,8 @@
  topics = Topic.all
 
  # Create Posts
- 50.times do
+ 
+ 1.times do
    Post.create!(
      topic:  topics.sample,
      title:  RandomData.random_sentence,
@@ -19,9 +20,10 @@
  end
  posts = Post.all
  
+ 
  50.times do
    SponsoredPost.create!(
-     topic_id:  topics.sample,
+     topic:  topics.sample,
      title:  RandomData.random_sentence,
      body:   RandomData.random_paragraph,
      price:  10
@@ -31,7 +33,7 @@
  
 
  
- 100.times do
+ 1.times do
    Comment.create!(
      post: posts.sample,
      body: RandomData.random_paragraph

@@ -1,5 +1,5 @@
-class SponsoredPostController < ApplicationController
-  def show
+class SponsoredPostsController < ApplicationController
+   def show
     @sponsored_post = SponsoredPost.find(params[:id])
   end
 

@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe SponsoredPostController, type: :controller do
-  
-  let(:my_topic) { Topic.create!(name:  RandomData.random_sentence, description: RandomData.random_paragraph) }
+RSpec.describe SponsoredPostsController, type: :controller do
+
+let(:my_topic) { Topic.create!(name:  RandomData.random_sentence, description: RandomData.random_paragraph) }
 
    let(:my_sp) { my_topic.sponsored_posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, price: 10) }
 
@@ -19,7 +19,7 @@ RSpec.describe SponsoredPostController, type: :controller do
  
     it "assigns my_sponsored_post to @sponsoredpost" do
       get :show, params: { topic_id: my_topic.id, id: my_sp.id }
-      expect(assigns(:sponsored_post)).to eq(my_post)
+      expect(assigns(:sponsored_post)).to eq(my_sp)
     end
   end
 
@@ -30,7 +30,7 @@ RSpec.describe SponsoredPostController, type: :controller do
     end
   
     it "renders the #new view" do
-      get :new, params: { topic_id: sp.id }
+      get :new, params: { topic_id: my_sp.id }
       expect(response).to render_template :new
     end
     
@@ -55,11 +55,12 @@ RSpec.describe SponsoredPostController, type: :controller do
        get :edit, params: { topic_id: my_topic.id, id: my_sp.id }
        sponsored_post_instance = assigns(:sponsored_post)
  
-       expect(sponsored_post_instance.id).to eq my_sponsored_post.id
-       expect(sponsored_post_instance.title).to eq my_sponsored_post.title
-       expect(sponsored_post_instance.body).to eq my_sponsored_post.body
-       expect(sponsored_post_instance.price).to eq my_sponsored_post.price
+       expect(sponsored_post_instance.id).to eq my_sp.id
+       expect(sponsored_post_instance.title).to eq my_sp.title
+       expect(sponsored_post_instance.body).to eq my_sp.body
+       expect(sponsored_post_instance.price).to eq my_sp.price
      end
    end
+
 
 end
