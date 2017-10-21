@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-    let(:post) { Post.create!(title: "New Post Title", body: "New Post Body") }
+  
+    let(:my_topic) { Topic.create!(name:  RandomData.random_sentence, description: RandomData.random_paragraph) }
+    let(:post) { my_topic.posts.create!(title: "New Post Title", body: "New Post Body that is longer" ) }
     
    it { is_expected.to belong_to(:topic) }
 
@@ -14,7 +16,7 @@ RSpec.describe Post, type: :model do
 
    describe "attributes" do
      it "has title and body attributes" do
-       expect(post).to have_attributes(title: "New Post Title", body: "New Post Body")
+       expect(post).to have_attributes(title: "New Post Title", body: "New Post Body that is longer")
      end
    end
 end
