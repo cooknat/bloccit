@@ -1,6 +1,4 @@
 require 'rails_helper'
-require 'application_helper'
-
 
 RSpec.describe UsersController, type: :controller do
   
