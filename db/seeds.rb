@@ -34,6 +34,7 @@
  
  100.times do
    Comment.create!(
+     user: users.sample,rails db:reset
      post: posts.sample,
      body: RandomData.random_paragraph
    )
