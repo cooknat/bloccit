@@ -98,6 +98,7 @@ RSpec.describe User, type: :model do
        favorite = user.favorites.where(post: @post).create
        expect(user.favorite_for(@post)).to eq(favorite)
      end
+<<<<<<< HEAD
    end
    
     describe ".avatar_url" do
@@ -107,5 +108,7 @@ RSpec.describe User, type: :model do
        expected_gravatar = "http://gravatar.com/avatar/bb6d1172212c180cfbdb7039129d7b03.png?s=48"
        expect(known_user.avatar_url(48)).to eq(expected_gravatar)
      end
+=======
+>>>>>>> 845d2504a80b692c708d925d9db4ecc9561d7f0b
    end
 end
